@@ -16,8 +16,6 @@ size_t cap;
 node_t* nodes;
 }list_t;
 
-#define GET_R(L,I) ((node_t)((char*)L->nodes+\
-((I)*(sizeof(node_t)+L->obj_size)))
 
 list_t* list_new(size_t obj_size){
 size_t capacity=1024;
