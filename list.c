@@ -47,8 +47,8 @@ for(size_t idx=0;idx<list->used;idx++){
 node_t* node=(node_t*)(mem+padding*idx);
 if(node->next ==NULL_NODE){ return node;}
 }
-list->used++;
-return (node_t*)(mem+padding*list->used);
+
+return (node_t*)(mem+padding*(list->used++));
 }
 #define free_node(x) do{\
  (x)->next=NULL_NODE;} while(0)
