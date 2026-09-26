@@ -45,8 +45,8 @@ for(size_t idx=0;idx<list->used;idx++){
 node_t* node=(node_t*)(mem+padding*idx);
 if(node->next ==NULL_NODE){ return node;}
 }
-
-return (node_t*)(mem+padding*(list->used++));
+list->used++;
+return (node_t*)(mem+padding*list->used);
 }
 #define free_node(x) do{\
  (x)->next=NULL_NODE;} while(0)
@@ -57,6 +57,7 @@ if (idx>=list->used) return NULL;
 node_t* curr=list->nodes;
 size_t padding=sizeof(node_t)+list->obj_size;
 while(idx--){
+if(curr->next==NULL_NODE){ return NULL;}
 curr= (node_t*)((char*)list->nodes + padding*curr->next);
 }
 return curr;
@@ -64,4 +65,10 @@ return curr;
 void* list_get(list_t* list,size_t idx){
 node_t* n=get_node_at(list,idx);
 return x ? x->buff : x; // return null if not found.
+}
+int list_put(list_t* list,size_t idx,void* obj){
+char* mem=list_get(list,idx);
+if(!mem) return 1;
+memcpy(mem,obj,list->obj_size);
+return 0;
 }
