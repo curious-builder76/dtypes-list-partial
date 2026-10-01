@@ -13,6 +13,7 @@ typedef struct{
 size_t obj_size;
 size_t used;
 size_t cap;
+size_t tail;
 node_t* nodes;
 }list_t;
 
