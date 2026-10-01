@@ -64,7 +64,7 @@ return curr;
 }
 void* list_get(list_t* list,size_t idx){
 node_t* n=get_node_at(list,idx);
-return x ? x->buff : x; // return null if not found.
+return n ? n->buff : n; // return null if not found.
 }
 int list_put(list_t* list,size_t idx,void* obj){
 char* mem=list_get(list,idx);
